@@ -1,11 +1,9 @@
 [services.backend]
-    [services.backend.build]
-        builder = "nixpacks"
-        buildCommand = "cd backend && pip install -r requirements.txt"
-        startCommand = "cd backend && uvicorn main:app --host 0.0.0.0 --port $PORT"
+source = "backend"
+build.command = "pip install -r requirements.txt"
+start.command = "uvicorn main:app --host 0.0.0.0 --port $PORT"
 
 [services.frontend]
-    [services.frontend.build]
-        builder = "nixpacks"
-        buildCommand = "cd frontend && pip install -r requirements.txt"
-        startCommand = "cd frontend && streamlit run ui.py --server.port $PORT --server.address 0.0.0.0"
+source = "frontend"
+build.command = "pip install -r requirements.txt"
+start.command = "streamlit run ui.py --server.port $PORT --server.address 0.0.0.0"
